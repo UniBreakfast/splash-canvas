@@ -28,7 +28,7 @@ let splashes = [
 
   onresize = resize
 
-  canvas.onclick = ({ x, y, timeStamp }) => makeSplash(x, y, timeStamp, rnd(300))
+  canvas.onmousedown = canvas.onmouseup = ({ x, y, timeStamp }) => makeSplash(x, y, timeStamp, rnd(300))
 
   requestAnimationFrame(animate)
 }
