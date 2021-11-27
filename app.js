@@ -28,11 +28,23 @@ let splashes = [
 
   onresize = resize
 
-  canvas.onmousedown = canvas.onmouseup = ({ x, y, timeStamp }) => makeSplash(x, y, timeStamp, rnd(300))
-
+  canvas.onmousedown = e => {
+    canvas.onmousemove = handleTrigger
+    handleTrigger(e)
+  }
+  canvas.onmouseup = e => {
+    canvas.onmousemove = null    
+    handleTrigger(e)
+  }
+  canvas.ontouchstart = canvas.ontouchmove = canvas.ontouchend = handleTrigger
+  
   requestAnimationFrame(animate)
 }
 
+
+function handleTrigger({ x, y, timeStamp }) {
+  makeSplash(x, y, timeStamp, rnd(300))
+}
 
 function drawCircle(x, y, r, lineWidth, opacity) {
   ctx.beginPath();
