@@ -9,14 +9,7 @@ const viscosity = 0.01 + rnd(0.3)//угасание
 const fluidity = 0.005 + rnd(0.5)//
 
 
-let splashes = [
-  {
-    x: 100,
-    y: 200,
-    ts: 0,
-    power: 300,
-  },
-]
+let splashes = []
 
 
 {
@@ -39,6 +32,8 @@ let splashes = [
   canvas.ontouchstart = canvas.ontouchmove = canvas.ontouchend = handleTrigger
   
   requestAnimationFrame(animate)
+  
+  makeSplash(100, 200, 0, 300)
 }
 
 
@@ -46,16 +41,16 @@ function handleTrigger({ x, y, timeStamp }) {
   makeSplash(x, y, timeStamp, rnd(300))
 }
 
-function drawCircle(x, y, r, lineWidth, opacity) {
+function drawCircle(x, y, r, lineWidth, color) {
   ctx.beginPath();
   ctx.lineWidth = lineWidth;
-  ctx.strokeStyle = `rgb(${55+rnd(5)},${140+rnd(10)},${160+rnd(20)},${opacity})`
+  ctx.strokeStyle = color
   ctx.arc(x, y, r, 0, 7);
   ctx.stroke();
 }
 
 function processSplash(splash, now) {
-  const { x, y, ts, power } = splash
+  const { x, y, ts, power, color } = splash
   const span = now - ts
   const r = span * speed
   const powerLeft = power - span * viscosity
@@ -63,7 +58,7 @@ function processSplash(splash, now) {
 
   const lineWidth = powerLeft * fluidity + 1
   const opacity = powerLeft / 100
-  drawCircle(x, y, r, lineWidth, opacity)
+  drawCircle(x, y, r, lineWidth, `${color}${opacity})`)
 
   if (!splash.north && r > y && y > 0) {
     makeSplash(x, -y, ts, power)
@@ -84,7 +79,7 @@ function processSplash(splash, now) {
 }
 
 function makeSplash(x, y, ts, power) {
-  splashes.push({ x, y, ts, power })
+  splashes.push({ x, y, ts, power, color: generateColor() })
 }
 
 function resize() {
@@ -103,4 +98,8 @@ function animate(now) {
 
 function rnd(max) {
   return Math.random() * max
+}
+
+function generateColor() {
+  return `rgba(${55+rnd(5)},${140+rnd(10)},${160+rnd(20)},`
 }
