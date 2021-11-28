@@ -49,7 +49,7 @@ function handleTrigger({ x, y, timeStamp }) {
 function drawCircle(x, y, r, lineWidth, opacity) {
   ctx.beginPath();
   ctx.lineWidth = lineWidth;
-  ctx.strokeStyle = `rgb(57,143,171,${opacity})`
+  ctx.strokeStyle = `rgb(${55+rnd(5)},${140+rnd(10)},${160+rnd(20)},${opacity})`
   ctx.arc(x, y, r, 0, 7);
   ctx.stroke();
 }
