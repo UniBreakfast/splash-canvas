@@ -13,7 +13,7 @@ let splashes = []
 
 
 {
-  document.body.style.margin = 0;
+  document.body.style = `margin: 0; overflow: hidden`;
   canvas.style.display = "block";
   canvas.style.background = "lightBlue"
   resize();
