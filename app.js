@@ -61,19 +61,19 @@ function processSplash(splash, now) {
   drawCircle(x, y, r, lineWidth, `${color}${opacity})`)
 
   if (!splash.north && r > y && y > 0) {
-    makeSplash(x, -y, ts, power * 0.7)
+    makeSplash(x, -y, ts, power * 0.83)
     splash.north = true
   }
   if (!splash.east && r > innerWidth - x && x < innerWidth) {
-    makeSplash(innerWidth * 2 - x, y, ts, power * 0.7)
+    makeSplash(innerWidth * 2 - x, y, ts, power * 0.83)
     splash.east = true
   }
   if (!splash.south && r > innerHeight - y && y < innerHeight) {
-    makeSplash(x, innerHeight * 2 - y, ts, power * 0.7)
+    makeSplash(x, innerHeight * 2 - y, ts, power * 0.83)
     splash.south = true
   }
   if (!splash.west && r > x && x > 0) {
-    makeSplash(-x, y, ts, power * 0.7)
+    makeSplash(-x, y, ts, power * 0.83)
     splash.west = true
   }
 }
