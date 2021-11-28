@@ -6,7 +6,7 @@ const speed = 0.01 + rnd(0.3)
 // const viscosity = 0.03 //угасание
 const viscosity = 0.01 + rnd(0.3)//угасание
 // const fluidity = 0.05 //
-const fluidity = 0.005 + rnd(0.5)//
+const fluidity = 0.005 + rnd(0.2)//
 
 
 let splashes = []
